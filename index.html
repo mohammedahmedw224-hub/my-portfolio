@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد عمر | محرر فيديو وموشن جرافيك</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+            color: #ffffff;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .center-title {
+            text-align: center;
+        }
+
+        /* 1. قسم التعريف (About) */
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            flex-wrap: wrap;
+        }
+        .about-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffffff;
+        }
+        .about-text {
+            max-width: 600px;
+        }
+        .about-text h1 {
+            margin-top: 0;
+            font-size: 2.5em;
+        }
+
+        /* 2. قسم المشاريع (Projects) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+        .video-card {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            border-radius: 8px;
+            background-color: #000;
+            border: none;
+        }
+        .vertical-iframe {
+            aspect-ratio: 9/16;
+        }
+        .horizontal-iframe {
+            aspect-ratio: 16/9;
+        }
+        .video-card h3 {
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .video-card.horizontal {
+            grid-column: 1 / -1;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        /* 3. قسم خلف الكواليس (Behind the Scenes) */
+        .bts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .bts-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background-color: #1e1e1e;
+            padding: 10px;
+        }
+        .bts-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* 4. قسم التواصل (Contact) */
+        .contact-section {
+            text-align: center;
+            background-color: #1e1e1e;
+            padding: 50px 20px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: #25D366;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 50px;
+            margin-top: 20px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .whatsapp-btn:hover {
+            transform: translateY(-5px);
+            background-color: #1ebe57;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                text-align: center;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://drive.google.com/thumbnail?id=1m8Dk7UM8KpWaS29L7HbVuahA9o-etCBx&sz=w1000" alt="محمد عمر">
+            </div>
+            <div class="about-text">
+                <h1>أهلاً، أنا محمد عمر</h1>
+                <p>محرر فيديو وموشن جرافيك. أمتلك شغفاً كبيراً في تحويل الأفكار إلى قصص بصرية جذابة واحترافية. متخصص في مونتاج الفيديوهات القصيرة والطولية، وتصميم الحركة باستخدام أحدث التقنيات.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="center-title">
+            <h2 class="section-title">مشاريع اشتغلتها</h2>
+        </div>
+        <div class="projects-grid">
+            
+            <div class="video-card">
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P/preview"></iframe>
+                <h3>مشروع عمودي 1</h3>
+            </div>
+
+            <div class="video-card">
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C/preview"></iframe>
+                <h3>مشروع عمودي 2</h3>
+            </div>
+
+            <div class="video-card">
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1lbft-M6NAHVBcAE0OFtSixTbownJGQEA/preview"></iframe>
+                <h3>مشروع عمودي 3</h3>
+            </div>
+
+            <div class="video-card">
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_/preview"></iframe>
+                <h3>مشروع عمودي 4</h3>
+            </div>
+
+            <div class="video-card">
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod/preview"></iframe>
+                <h3>مشروع عمودي 5</h3>
+            </div>
+
+            <div class="video-card">
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm/preview"></iframe>
+                <h3>مشروع عمودي 6</h3>
+            </div>
+
+            <div class="video-card horizontal">
+                <iframe class="horizontal-iframe" src="https://drive.google.com/file/d/10aRLi3vWHkhyZb38U138OjUKzAm7IQAD/preview"></iframe>
+                <h3>مشروع أفقي متكامل</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="bts">
+        <div class="center-title">
+            <h2 class="section-title">خلف الكواليس</h2>
+        </div>
+        <div class="bts-grid">
+            <div class="bts-item">
+                <img src="https://drive.google.com/thumbnail?id=1Ghlp7PXJ8-me7QmtY-uMVxpmK1zxsZmZ&sz=w1000" alt="التايم لاين">
+            </div>
+            <div class="bts-item">
+                <iframe class="horizontal-iframe" src="https://drive.google.com/file/d/1_tmDbHmPgi04w3Yq7l_MglaYhl_G_83Q/preview"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-section">
+            <h2 class="section-title" style="border: none;">هل لديك مشروع قادم؟</h2>
+            <p>يسعدني تواصلك لمناقشة أفكارك والبدء في تنفيذها بأعلى جودة.</p>
+            <a href="https://wa.me/967773934035" class="whatsapp-btn" target="_blank">أرسل رسالة على واتساب</a>
+        </div>
+    </section>
+
+</body>
+</html>
