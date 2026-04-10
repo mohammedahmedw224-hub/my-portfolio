@@ -77,22 +77,16 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             text-align: center;
         }
-        iframe {
+        video {
             width: 100%;
             border-radius: 8px;
             background-color: #000;
-            border: none;
+            aspect-ratio: 9/16; 
+            object-fit: cover;
         }
-        .vertical-iframe {
-            aspect-ratio: 9/16;
-        }
-        .horizontal-iframe {
+        /* كلاس اختياري للفيديو الأفقي */
+        .video-card.horizontal video {
             aspect-ratio: 16/9;
-        }
-        .video-card h3 {
-            margin-top: 15px;
-            margin-bottom: 5px;
-            font-size: 1.1em;
         }
 
         .video-card.horizontal {
@@ -114,10 +108,11 @@
             background-color: #1e1e1e;
             padding: 10px;
         }
-        .bts-item img {
+        .bts-item img, .bts-item video {
             width: 100%;
             height: auto;
             border-radius: 8px;
+            object-fit: cover;
             display: block;
         }
 
@@ -176,38 +171,45 @@
         <div class="projects-grid">
             
             <div class="video-card">
-                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P/preview"></iframe>
-                <h3>مشروع عمودي 1</h3>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P&sz=w1000">
+                    <source src="v1.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="video-card">
-                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C/preview"></iframe>
-                <h3>مشروع عمودي 2</h3>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C&sz=w1000">
+                    <source src="v2.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="video-card">
-                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1lbft-M6NAHVBcAE0OFtSixTbownJGQEA/preview"></iframe>
-                <h3>مشروع عمودي 3</h3>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1lbft-M6NAHVBcAE0OFtSixTbownJGQEA&sz=w1000">
+                    <source src="v3.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="video-card">
-                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_/preview"></iframe>
-                <h3>مشروع عمودي 4</h3>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_&sz=w1000">
+                    <source src="v4.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="video-card">
-                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod/preview"></iframe>
-                <h3>مشروع عمودي 5</h3>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod&sz=w1000">
+                    <source src="v5.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="video-card">
-                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm/preview"></iframe>
-                <h3>مشروع عمودي 6</h3>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm&sz=w1000">
+                    <source src="v6.mp4" type="video/mp4">
+                </video>
             </div>
 
             <div class="video-card horizontal">
-                <iframe class="horizontal-iframe" src="https://drive.google.com/file/d/10aRLi3vWHkhyZb38U138OjUKzAm7IQAD/preview"></iframe>
-                <h3>مشروع أفقي متكامل</h3>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=10aRLi3vWHkhyZb38U138OjUKzAm7IQAD&sz=w1000">
+                    <source src="h1.mp4" type="video/mp4">
+                </video>
             </div>
 
         </div>
@@ -222,7 +224,9 @@
                 <img src="https://drive.google.com/thumbnail?id=1Ghlp7PXJ8-me7QmtY-uMVxpmK1zxsZmZ&sz=w1000" alt="التايم لاين">
             </div>
             <div class="bts-item">
-                <iframe class="horizontal-iframe" src="https://drive.google.com/file/d/1_tmDbHmPgi04w3Yq7l_MglaYhl_G_83Q/preview"></iframe>
+                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1_tmDbHmPgi04w3Yq7l_MglaYhl_G_83Q&sz=w1000">
+                    <source src="bts-video.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
     </section>
