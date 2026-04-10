@@ -77,15 +77,16 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             text-align: center;
         }
-        video {
+        iframe {
             width: 100%;
             border-radius: 8px;
             background-color: #000;
-            aspect-ratio: 9/16; 
-            object-fit: cover;
+            border: none;
         }
-        /* كلاس اختياري للفيديو الأفقي */
-        .video-card.horizontal video {
+        .vertical-iframe {
+            aspect-ratio: 9/16;
+        }
+        .horizontal-iframe {
             aspect-ratio: 16/9;
         }
 
@@ -108,11 +109,10 @@
             background-color: #1e1e1e;
             padding: 10px;
         }
-        .bts-item img, .bts-item video {
+        .bts-item img {
             width: 100%;
             height: auto;
             border-radius: 8px;
-            object-fit: cover;
             display: block;
         }
 
@@ -171,45 +171,31 @@
         <div class="projects-grid">
             
             <div class="video-card">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P&sz=w1000">
-                    <source src="v1.mp4" type="video/mp4">
-                </video>
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P/preview"></iframe>
             </div>
 
             <div class="video-card">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C&sz=w1000">
-                    <source src="v2.mp4" type="video/mp4">
-                </video>
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C/preview"></iframe>
             </div>
 
             <div class="video-card">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1lbft-M6NAHVBcAE0OFtSixTbownJGQEA&sz=w1000">
-                    <source src="v3.mp4" type="video/mp4">
-                </video>
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1lbft-M6NAHVBcAE0OFtSixTbownJGQEA/preview"></iframe>
             </div>
 
             <div class="video-card">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_&sz=w1000">
-                    <source src="v4.mp4" type="video/mp4">
-                </video>
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_/preview"></iframe>
             </div>
 
             <div class="video-card">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod&sz=w1000">
-                    <source src="v5.mp4" type="video/mp4">
-                </video>
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod/preview"></iframe>
             </div>
 
             <div class="video-card">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm&sz=w1000">
-                    <source src="v6.mp4" type="video/mp4">
-                </video>
+                <iframe class="vertical-iframe" src="https://drive.google.com/file/d/1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm/preview"></iframe>
             </div>
 
             <div class="video-card horizontal">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=10aRLi3vWHkhyZb38U138OjUKzAm7IQAD&sz=w1000">
-                    <source src="h1.mp4" type="video/mp4">
-                </video>
+                <iframe class="horizontal-iframe" src="https://drive.google.com/file/d/10aRLi3vWHkhyZb38U138OjUKzAm7IQAD/preview"></iframe>
             </div>
 
         </div>
@@ -224,9 +210,7 @@
                 <img src="https://drive.google.com/thumbnail?id=1Ghlp7PXJ8-me7QmtY-uMVxpmK1zxsZmZ&sz=w1000" alt="التايم لاين">
             </div>
             <div class="bts-item">
-                <video controls preload="metadata" poster="https://drive.google.com/thumbnail?id=1_tmDbHmPgi04w3Yq7l_MglaYhl_G_83Q&sz=w1000">
-                    <source src="bts-video.mp4" type="video/mp4">
-                </video>
+                <iframe class="horizontal-iframe" src="https://drive.google.com/file/d/1_tmDbHmPgi04w3Yq7l_MglaYhl_G_83Q/preview"></iframe>
             </div>
         </div>
     </section>
