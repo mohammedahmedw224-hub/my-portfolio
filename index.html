@@ -10,8 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
+        /* التمرير السلس */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px; /* لكي لا يغطي الشريط العلوي على عناوين الأقسام */
+        }
+
         body {
-            /* تطبيق الخط الجديد هنا */
             font-family: 'Cairo', sans-serif;
             background-color: #121212;
             color: #ffffff;
@@ -20,8 +25,40 @@
             line-height: 1.6;
         }
 
+        /* 🌟 تنسيق شريط التنقل العلوي (Navbar) 🌟 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(15, 15, 15, 0.95); /* لون أسود شبه شفاف */
+            backdrop-filter: blur(10px); /* تأثير ضبابي للخلفية */
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px; /* المسافة بين الروابط */
+            margin: 0;
+            padding: 20px 0;
+        }
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .nav-links li a:hover {
+            color: #2ecc71; /* اللون الأخضر عند تمرير الماوس */
+        }
+
+        /* تنسيق الأقسام العامة */
         section {
-            padding: 60px 20px;
+            padding: 80px 20px 60px; /* زيادة المساحة العلوية لتجنب الشريط */
             max-width: 1200px;
             margin: auto;
         }
@@ -29,7 +66,7 @@
         h2.section-title {
             text-align: center;
             font-size: 2em;
-            font-weight: 700; /* خط عريض للعناوين */
+            font-weight: 700;
             margin-bottom: 40px;
             color: #ffffff;
             border-bottom: 2px solid #444;
@@ -52,6 +89,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             flex-wrap: wrap;
+            margin-top: 40px;
         }
         .about-image img {
             width: 200px;
@@ -69,7 +107,7 @@
             font-weight: 700;
         }
         .about-text p {
-            font-weight: 300; /* خط خفيف للنص التعريفي */
+            font-weight: 300;
         }
 
         /* 2. قسم المشاريع (Projects) */
@@ -107,24 +145,18 @@
             margin-top: 20px;
         }
 
-        /* 3. قسم خلف الكواليس (Behind the Scenes) */
-        .bts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .bts-item {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        /* 3. قسم المدونة (Blog) - قسم جديد */
+        .blog-section {
             background-color: #1e1e1e;
-            padding: 10px;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-        .bts-item img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
+        .blog-section p {
+            font-weight: 300;
+            font-size: 1.2em;
+            color: #aaaaaa;
         }
 
         /* 4. قسم التواصل (Contact) */
@@ -153,15 +185,32 @@
             background-color: #1ebe57;
         }
 
+        /* استجابة شريط التنقل لشاشات الجوال */
         @media (max-width: 768px) {
             .about-container {
                 text-align: center;
                 flex-direction: column;
             }
+            .nav-links {
+                gap: 20px;
+                padding: 15px 0;
+            }
+            .nav-links li a {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#about">عني</a></li>
+            <li><a href="#projects">الأعمال</a></li>
+            <li><a href="#blog">المدونة</a></li>
+            <li><a href="#contact">التواصل</a></li>
+        </ul>
+    </nav>
 
     <section id="about">
         <div class="about-container">
@@ -177,7 +226,7 @@
 
     <section id="projects">
         <div class="center-title">
-            <h2 class="section-title">مشاريع اشتغلتها</h2>
+            <h2 class="section-title">الأعمال</h2>
         </div>
         <div class="projects-grid">
             
@@ -212,17 +261,12 @@
         </div>
     </section>
 
-    <section id="bts">
+    <section id="blog">
         <div class="center-title">
-            <h2 class="section-title">خلف الكواليس</h2>
+            <h2 class="section-title">المدونة</h2>
         </div>
-        <div class="bts-grid">
-            <div class="bts-item">
-                <img src="https://drive.google.com/thumbnail?id=1Ghlp7PXJ8-me7QmtY-uMVxpmK1zxsZmZ&sz=w1000" alt="التايم لاين">
-            </div>
-            <div class="bts-item">
-                <iframe class="horizontal-iframe" src="https://drive.google.com/file/d/1_tmDbHmPgi04w3Yq7l_MglaYhl_G_83Q/preview"></iframe>
-            </div>
+        <div class="blog-section">
+            <p>قريباً.. سأشارك هنا مقالات وتلميحات حول المونتاج والموشن جرافيك وكل ما يخص صناعة المحتوى البصري.</p>
         </div>
     </section>
 
@@ -236,3 +280,4 @@
 
 </body>
 </html>
+
