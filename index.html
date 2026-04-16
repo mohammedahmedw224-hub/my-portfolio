@@ -36,7 +36,7 @@
             transform: translateY(0);
         }
 
-        /* 🌟 شريط التنقل العلوي (أزرار للكمبيوتر والجوال) 🌟 */
+        /* 🌟 شريط التنقل العلوي 🌟 */
         .navbar {
             position: fixed;
             top: 0;
@@ -56,14 +56,12 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 12px; /* مسافة متناسقة بين الأزرار */
+            gap: 12px;
             margin: 0;
             padding: 0;
             justify-content: center;
             flex-wrap: wrap;
         }
-        
-        /* شكل الأزرار (Pills) للجميع */
         .nav-links li a {
             color: #eeeeee;
             text-decoration: none;
@@ -71,21 +69,17 @@
             font-weight: 700;
             padding: 8px 22px; 
             border-radius: 50px; 
-            background-color: rgba(255, 255, 255, 0.05); /* خلفية خفيفة لتظهر كزر دائماً */
-            border: 1px solid rgba(255, 255, 255, 0.05); /* إطار خفيف جداً */
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease-in-out;
             white-space: nowrap; 
             display: inline-block;
         }
-        
-        /* تأثير التمرير (Hover) */
         .nav-links li a:hover {
             background-color: rgba(46, 204, 113, 0.15); 
             color: #2ecc71;
             border-color: rgba(46, 204, 113, 0.3);
         }
-        
-        /* الزر النشط (Highlight) */
         .nav-links li a.active {
             background-color: #2ecc71;
             color: #000;
@@ -93,11 +87,8 @@
             box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
         }
 
-        /* 🌟 تعديلات شاشات الجوال 🌟 */
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 10px 5px;
-            }
+            .nav-container { padding: 10px 5px; }
             .nav-links {
                 justify-content: flex-start; 
                 overflow-x: auto; 
@@ -106,17 +97,12 @@
                 -webkit-overflow-scrolling: touch; 
                 scrollbar-width: none; 
             }
-            .nav-links::-webkit-scrollbar {
-                display: none; 
-            }
-            .nav-links li a {
-                font-size: 0.9em;
-                padding: 6px 16px;
-            }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links li a { font-size: 0.9em; padding: 6px 16px; }
         }
 
         /* -------------------------------------- */
-        /* باقي التنسيقات */
+        /* التنسيقات العامة */
         /* -------------------------------------- */
         section {
             padding: 100px 20px 60px;
@@ -142,6 +128,7 @@
             transform: translateX(-50%);
         }
 
+        /* 🌟 التحديث الجديد: واجهة الفيديوهات (الغطاء الذكي) 🌟 */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -152,24 +139,80 @@
             padding: 12px;
             border-radius: 15px;
             border: 1px solid #222;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.4s ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
         .video-card:hover {
-            transform: translateY(-12px) scale(1.03);
+            transform: translateY(-8px);
             border-color: #2ecc71;
-            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.2);
-            z-index: 10;
+            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.15);
         }
-        iframe {
+        
+        .video-wrapper {
+            position: relative;
             width: 100%;
             border-radius: 10px;
-            border: none;
-            background: #000;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #000;
         }
         .v-iframe { aspect-ratio: 9/16; }
         .h-iframe { aspect-ratio: 16/9; }
 
+        .custom-poster {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease, opacity 0.4s ease;
+        }
+        .blur-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(0px); /* يبدأ بدون ضبابية */
+            transition: all 0.5s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* تأثيرات الهوفر للفيديو */
+        .video-wrapper:hover .custom-poster {
+            transform: scale(1.05); /* تقريب الصورة */
+        }
+        .video-wrapper:hover .blur-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px); /* ضبابية احترافية */
+        }
+
+        /* زر التشغيل النابض */
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: #2ecc71;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            padding-right: -2px;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            animation: pulse-play 2s infinite; /* الأنيميشن */
+        }
+        .video-wrapper:hover .play-btn {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        @keyframes pulse-play {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        /* عني */
         .about-box {
             background: linear-gradient(145deg, #1a1a1a, #111);
             padding: 40px;
@@ -210,6 +253,7 @@
             background-color: rgba(46, 204, 113, 0.05);
         }
 
+        /* 🌟 التواصل وعبارة التوفر 🌟 */
         .contact-box {
             text-align: center;
             background: #1a1a1a;
@@ -238,6 +282,57 @@
             transform: scale(0.95);
             background: #1e8449;
             box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+        }
+        
+        .availability-text {
+            display: inline-block;
+            margin-top: 30px;
+            color: #2ecc71;
+            font-size: 1.2em;
+            font-weight: 700;
+            padding: 10px 25px;
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 30px;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            animation: float-text 3s ease-in-out infinite;
+        }
+        @keyframes float-text {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* 🌟 زر الواتساب العائم 🌟 */
+        .floating-wa {
+            position: fixed;
+            bottom: 25px;
+            left: 25px; /* تم وضعه باليسار لكي لا يغطي على شريط التمرير */
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: pulse-wa 2s infinite;
+        }
+        .floating-wa svg {
+            width: 35px;
+            height: 35px;
+            fill: #fff;
+        }
+        .floating-wa:hover {
+            transform: scale(1.15) rotate(-10deg);
+            background-color: #20b858;
+        }
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
     </style>
 </head>
@@ -272,12 +367,49 @@
     <section id="reels">
         <h2 class="section-title fade-in">أعمال الريلز (Reels)</h2>
         <div class="projects-grid">
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1lbft-M6NAHVBcAE0OFtSixTbownJGQEA/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm/preview"></iframe></div>
+            
+            <div class="video-card fade-in">
+                <div class="video-wrapper v-iframe" onclick="loadIframe(this, '1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P')">
+                    <div class="custom-poster" style="background-image: url('https://drive.google.com/thumbnail?id=1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P&sz=w1000');"></div>
+                    <div class="blur-overlay"><div class="play-btn">▶</div></div>
+                </div>
+            </div>
+
+            <div class="video-card fade-in">
+                <div class="video-wrapper v-iframe" onclick="loadIframe(this, '19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C')">
+                    <div class="custom-poster" style="background-image: url('https://drive.google.com/thumbnail?id=19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C&sz=w1000');"></div>
+                    <div class="blur-overlay"><div class="play-btn">▶</div></div>
+                </div>
+            </div>
+
+            <div class="video-card fade-in">
+                <div class="video-wrapper v-iframe" onclick="loadIframe(this, '1lbft-M6NAHVBcAE0OFtSixTbownJGQEA')">
+                    <div class="custom-poster" style="background-image: url('https://drive.google.com/thumbnail?id=1lbft-M6NAHVBcAE0OFtSixTbownJGQEA&sz=w1000');"></div>
+                    <div class="blur-overlay"><div class="play-btn">▶</div></div>
+                </div>
+            </div>
+
+            <div class="video-card fade-in">
+                <div class="video-wrapper v-iframe" onclick="loadIframe(this, '1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_')">
+                    <div class="custom-poster" style="background-image: url('https://drive.google.com/thumbnail?id=1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_&sz=w1000');"></div>
+                    <div class="blur-overlay"><div class="play-btn">▶</div></div>
+                </div>
+            </div>
+
+            <div class="video-card fade-in">
+                <div class="video-wrapper v-iframe" onclick="loadIframe(this, '1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod')">
+                    <div class="custom-poster" style="background-image: url('https://drive.google.com/thumbnail?id=1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod&sz=w1000');"></div>
+                    <div class="blur-overlay"><div class="play-btn">▶</div></div>
+                </div>
+            </div>
+
+            <div class="video-card fade-in">
+                <div class="video-wrapper v-iframe" onclick="loadIframe(this, '1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm')">
+                    <div class="custom-poster" style="background-image: url('https://drive.google.com/thumbnail?id=1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm&sz=w1000');"></div>
+                    <div class="blur-overlay"><div class="play-btn">▶</div></div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -292,7 +424,10 @@
         <h2 class="section-title fade-in">موشن جرافيك</h2>
         <div class="projects-grid">
             <div class="video-card fade-in" style="grid-column: 1 / -1; max-width: 800px; margin: auto;">
-                <iframe class="h-iframe" src="https://drive.google.com/file/d/10aRLi3vWHkhyZb38U138OjUKzAm7IQAD/preview"></iframe>
+                <div class="video-wrapper h-iframe" onclick="loadIframe(this, '10aRLi3vWHkhyZb38U138OjUKzAm7IQAD')">
+                    <div class="custom-poster" style="background-image: url('https://drive.google.com/thumbnail?id=10aRLi3vWHkhyZb38U138OjUKzAm7IQAD&sz=w1000');"></div>
+                    <div class="blur-overlay"><div class="play-btn">▶</div></div>
+                </div>
             </div>
         </div>
     </section>
@@ -314,41 +449,53 @@
             <h2>هل تبحث عن عمل احترافي؟</h2>
             <p>أنا جاهز لتحويل فكرتك القادمة إلى واقع بصري ملموس.</p>
             <a href="https://wa.me/967773934035" class="whatsapp-btn" id="waBtn" target="_blank">تواصل معي عبر واتساب</a>
+            <br>
+            <div class="availability-text">✨ متوفر حالياً لاستقبال المشاريع</div>
         </div>
     </section>
 
+    <a href="https://wa.me/967773934035" class="floating-wa" target="_blank" title="تواصل معي">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.004-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>
+    </a>
+
     <script>
+        // 1. وظيفة تشغيل الفيديو مع أنيميشن ناعم
+        function loadIframe(element, fileId) {
+            // إضافة أنيميشن التلاشي للغلاف
+            element.querySelector('.blur-overlay').style.opacity = '0';
+            element.querySelector('.custom-poster').style.transform = 'scale(1.1)';
+            element.querySelector('.custom-poster').style.opacity = '0';
+            
+            // استبدال الغلاف بالفيديو بعد التلاشي
+            setTimeout(() => {
+                element.innerHTML = `<iframe src="https://drive.google.com/file/d/${fileId}/preview?autoplay=1" allow="autoplay" allowfullscreen style="width:100%; height:100%; position:absolute; top:0; left:0; border:none; border-radius:10px;"></iframe>`;
+            }, 400);
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             
-            // 1. تفعيل تأثير الحركة عند النزول (Fade-in)
+            // 2. تفعيل تأثير الحركة عند النزول (Fade-in)
             const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
+            const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
 
             const appearOnScroll = new IntersectionObserver(function(entries, observer) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('appear');
-                        observer.unobserve(entry.target); 
-                    }
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('appear');
+                    observer.unobserve(entry.target); 
                 });
             }, appearOptions);
 
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
+            faders.forEach(fader => appearOnScroll.observe(fader));
 
-            // 2. تفعيل الهايلايت للأقسام (ScrollSpy)
+            // 3. تفعيل الهايلايت للأقسام (ScrollSpy)
             const sections = document.querySelectorAll("section");
             const navLinks = document.querySelectorAll(".nav-links li a");
 
             window.addEventListener("scroll", () => {
                 let current = "";
-
                 sections.forEach((section) => {
                     const sectionTop = section.offsetTop;
                     if (pageYOffset >= sectionTop - 120) {
@@ -360,8 +507,6 @@
                     link.classList.remove("active");
                     if (link.getAttribute("href").includes(current)) {
                         link.classList.add("active");
-                        
-                        // تمرير شريط الأزرار في الجوال ليكون الزر النشط ظاهراً دائماً
                         if (window.innerWidth <= 768) {
                             link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                         }
@@ -369,13 +514,11 @@
                 });
             });
 
-            // 3. تأثير زر الواتساب عند الضغط
+            // 4. تأثير زر الواتساب عند الضغط
             const waButton = document.getElementById('waBtn');
             waButton.addEventListener('click', function() {
                 this.classList.add('btn-clicked');
-                setTimeout(() => {
-                    this.classList.remove('btn-clicked');
-                }, 200);
+                setTimeout(() => this.classList.remove('btn-clicked'), 200);
             });
             
         });
