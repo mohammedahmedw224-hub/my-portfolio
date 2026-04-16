@@ -1,385 +1,96 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محمد عمر | معرض الأعمال الاحترافي</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محمد عمر | معرض الأعمال</title>
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
-        }
+<style>
+body {
+    font-family: Arial;
+    background: #0f0f0f;
+    color: #fff;
+    margin: 0;
+}
 
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #0f0f0f;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+/* الفيديو الذكي */
+.video-card {
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
 
-        /* 🌟 كلاسات الحركة (Animation) 🌟 */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, visibility;
-        }
-        .fade-in.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
+.video-card:hover {
+    transform: scale(1.03);
+}
 
-        /* 🌟 شريط التنقل العلوي (أزرار للكمبيوتر والجوال) 🌟 */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 2000;
-            border-bottom: 1px solid #222;
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            padding: 15px 10px;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 12px; /* مسافة متناسقة بين الأزرار */
-            margin: 0;
-            padding: 0;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        /* شكل الأزرار (Pills) للجميع */
-        .nav-links li a {
-            color: #eeeeee;
-            text-decoration: none;
-            font-size: 1.05em;
-            font-weight: 700;
-            padding: 8px 22px; 
-            border-radius: 50px; 
-            background-color: rgba(255, 255, 255, 0.05); /* خلفية خفيفة لتظهر كزر دائماً */
-            border: 1px solid rgba(255, 255, 255, 0.05); /* إطار خفيف جداً */
-            transition: all 0.3s ease-in-out;
-            white-space: nowrap; 
-            display: inline-block;
-        }
-        
-        /* تأثير التمرير (Hover) */
-        .nav-links li a:hover {
-            background-color: rgba(46, 204, 113, 0.15); 
-            color: #2ecc71;
-            border-color: rgba(46, 204, 113, 0.3);
-        }
-        
-        /* الزر النشط (Highlight) */
-        .nav-links li a.active {
-            background-color: #2ecc71;
-            color: #000;
-            border-color: #2ecc71;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
-        }
+/* طبقة التشغيل */
+.video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+}
 
-        /* 🌟 تعديلات شاشات الجوال 🌟 */
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 10px 5px;
-            }
-            .nav-links {
-                justify-content: flex-start; 
-                overflow-x: auto; 
-                flex-wrap: nowrap; 
-                padding-bottom: 5px; 
-                -webkit-overflow-scrolling: touch; 
-                scrollbar-width: none; 
-            }
-            .nav-links::-webkit-scrollbar {
-                display: none; 
-            }
-            .nav-links li a {
-                font-size: 0.9em;
-                padding: 6px 16px;
-            }
-        }
+/* زر التشغيل */
+.play-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #2ecc71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: black;
+    box-shadow: 0 0 20px #2ecc71;
+}
 
-        /* -------------------------------------- */
-        /* باقي التنسيقات */
-        /* -------------------------------------- */
-        section {
-            padding: 100px 20px 60px;
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2em;
-            margin-bottom: 50px;
-            position: relative;
-        }
-        .section-title::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: #2ecc71;
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .video-card {
-            background-color: #1a1a1a;
-            padding: 12px;
-            border-radius: 15px;
-            border: 1px solid #222;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-        .video-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            border-color: #2ecc71;
-            box-shadow: 0 15px 30px rgba(46, 204, 113, 0.2);
-            z-index: 10;
-        }
-        iframe {
-            width: 100%;
-            border-radius: 10px;
-            border: none;
-            background: #000;
-        }
-        .v-iframe { aspect-ratio: 9/16; }
-        .h-iframe { aspect-ratio: 16/9; }
-
-        .about-box {
-            background: linear-gradient(145deg, #1a1a1a, #111);
-            padding: 40px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            justify-content: center;
-            border: 1px solid #222;
-        }
-        .about-image img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 4px solid #2ecc71;
-            object-fit: cover;
-            transition: all 0.5s ease;
-        }
-        .about-image img:hover {
-            transform: scale(1.08) rotate(5deg);
-            box-shadow: 0 0 25px rgba(46, 204, 113, 0.5);
-        }
-        .about-text { max-width: 600px; text-align: center; }
-
-        .placeholder-text {
-            text-align: center;
-            color: #666;
-            grid-column: 1 / -1;
-            padding: 40px;
-            border: 2px dashed #333;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-        .placeholder-text:hover {
-            border-color: #2ecc71;
-            color: #fff;
-            background-color: rgba(46, 204, 113, 0.05);
-        }
-
-        .contact-box {
-            text-align: center;
-            background: #1a1a1a;
-            padding: 60px;
-            border-radius: 25px;
-        }
-        .whatsapp-btn {
-            display: inline-block;
-            background: #2ecc71;
-            color: #fff;
-            padding: 15px 45px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.3em;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
-        }
-        .whatsapp-btn:hover { 
-            background: #27ae60; 
-            transform: translateY(-5px) scale(1.05); 
-            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.6);
-        }
-        .whatsapp-btn.btn-clicked {
-            transform: scale(0.95);
-            background: #1e8449;
-            box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
-        }
-    </style>
+/* iframe */
+.video-card iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+</style>
 </head>
+
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="#about" class="active">عني</a></li>
-                <li><a href="#reels">ريلز</a></li>
-                <li><a href="#collage">كولاج</a></li>
-                <li><a href="#motion">موشن جرافيك</a></li>
-                <li><a href="#ai">ذكاء اصطناعي</a></li>
-                <li><a href="#blog">المدونة</a></li>
-                <li><a href="#contact">التواصل</a></li>
-            </ul>
-        </div>
-    </nav>
+<h2 style="text-align:center">أعمالي</h2>
 
-    <section id="about">
-        <div class="about-box fade-in">
-            <div class="about-image">
-                <img src="https://drive.google.com/thumbnail?id=1m8Dk7UM8KpWaS29L7HbVuahA9o-etCBx&sz=w1000" alt="محمد عمر">
-            </div>
-            <div class="about-text">
-                <h1>محمد عمر</h1>
-                <p>محرر فيديو وموشن جرافيك. متخصص في تحويل الأفكار المعقدة إلى قصص بصرية مذهلة، سواء عبر المونتاج الإبداعي أو تقنيات الذكاء الاصطناعي والموشن جرافيك.</p>
-            </div>
-        </div>
-    </section>
+<div style="max-width:900px;margin:auto;display:grid;gap:20px">
 
-    <section id="reels">
-        <h2 class="section-title fade-in">أعمال الريلز (Reels)</h2>
-        <div class="projects-grid">
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1lbft-M6NAHVBcAE0OFtSixTbownJGQEA/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1eeK03cdxxwt1D-3uAULXUfTXoUwXHA0_/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1A7aUI2c_v7-PgTP5vZfyYWf9j2DCTEod/preview"></iframe></div>
-            <div class="video-card fade-in"><iframe class="v-iframe" src="https://drive.google.com/file/d/1_OxMExHDVC55PgnlwQbvD5qafGuNyvbm/preview"></iframe></div>
-        </div>
-    </section>
+<!-- فيديو -->
+<div class="video-card" onclick="playVideo(this, 'https://drive.google.com/file/d/1VACzwuC_9zvKm7woc8Oty8DQnDuWe6-P/preview')">
 
-    <section id="collage">
-        <h2 class="section-title fade-in">أعمال الكولاج</h2>
-        <div class="projects-grid fade-in">
-            <div class="placeholder-text">سيتم إضافة أعمال الكولاج هنا قريباً..</div>
-        </div>
-    </section>
+    <div class="video-overlay">
+        <div class="play-btn">▶</div>
+    </div>
 
-    <section id="motion">
-        <h2 class="section-title fade-in">موشن جرافيك</h2>
-        <div class="projects-grid">
-            <div class="video-card fade-in" style="grid-column: 1 / -1; max-width: 800px; margin: auto;">
-                <iframe class="h-iframe" src="https://drive.google.com/file/d/10aRLi3vWHkhyZb38U138OjUKzAm7IQAD/preview"></iframe>
-            </div>
-        </div>
-    </section>
+</div>
 
-    <section id="ai">
-        <h2 class="section-title fade-in">أعمال الذكاء الاصطناعي</h2>
-        <div class="projects-grid fade-in">
-            <div class="placeholder-text">سيتم إضافة أعمال الذكاء الاصطناعي هنا قريباً..</div>
-        </div>
-    </section>
+<!-- كرر نفس الكرت -->
+<div class="video-card" onclick="playVideo(this, 'https://drive.google.com/file/d/19d621qEtt49TLIgyk4KyFzZGSEGR2Q_C/preview')">
 
-    <section id="blog">
-        <h2 class="section-title fade-in">المدونة</h2>
-        <div class="fade-in" style="text-align: center; color: #888;">سأشارككم هنا خبراتي وتجاربي في عالم المونتاج.. قريباً.</div>
-    </section>
+    <div class="video-overlay">
+        <div class="play-btn">▶</div>
+    </div>
 
-    <section id="contact">
-        <div class="contact-box fade-in">
-            <h2>هل تبحث عن عمل احترافي؟</h2>
-            <p>أنا جاهز لتحويل فكرتك القادمة إلى واقع بصري ملموس.</p>
-            <a href="https://wa.me/967773934035" class="whatsapp-btn" id="waBtn" target="_blank">تواصل معي عبر واتساب</a>
-        </div>
-    </section>
+</div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // 1. تفعيل تأثير الحركة عند النزول (Fade-in)
-            const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
+</div>
 
-            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('appear');
-                        observer.unobserve(entry.target); 
-                    }
-                });
-            }, appearOptions);
-
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
-
-            // 2. تفعيل الهايلايت للأقسام (ScrollSpy)
-            const sections = document.querySelectorAll("section");
-            const navLinks = document.querySelectorAll(".nav-links li a");
-
-            window.addEventListener("scroll", () => {
-                let current = "";
-
-                sections.forEach((section) => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 120) {
-                        current = section.getAttribute("id");
-                    }
-                });
-
-                navLinks.forEach((link) => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href").includes(current)) {
-                        link.classList.add("active");
-                        
-                        // تمرير شريط الأزرار في الجوال ليكون الزر النشط ظاهراً دائماً
-                        if (window.innerWidth <= 768) {
-                            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                        }
-                    }
-                });
-            });
-
-            // 3. تأثير زر الواتساب عند الضغط
-            const waButton = document.getElementById('waBtn');
-            waButton.addEventListener('click', function() {
-                this.classList.add('btn-clicked');
-                setTimeout(() => {
-                    this.classList.remove('btn-clicked');
-                }, 200);
-            });
-            
-        });
-    </script>
+<script>
+function playVideo(el, url) {
+    el.innerHTML = `<iframe src="${url}?autoplay=1" allowfullscreen></iframe>`;
+}
+</script>
 
 </body>
 </html>
