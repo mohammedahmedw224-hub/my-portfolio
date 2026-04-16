@@ -12,7 +12,7 @@
     <style>
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 100px; /* تم زيادة المساحة لتناسب شريط التنقل */
+            scroll-padding-top: 100px;
         }
 
         body {
@@ -36,7 +36,7 @@
             transform: translateY(0);
         }
 
-        /* 🌟 شريط التنقل العلوي (المعدل للأزرار) 🌟 */
+        /* 🌟 شريط التنقل العلوي (أزرار للكمبيوتر والجوال) 🌟 */
         .navbar {
             position: fixed;
             top: 0;
@@ -56,58 +56,67 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 10px; /* مسافة بين الأزرار */
+            gap: 12px; /* مسافة متناسقة بين الأزرار */
             margin: 0;
             padding: 0;
             justify-content: center;
+            flex-wrap: wrap;
         }
+        
+        /* شكل الأزرار (Pills) للجميع */
         .nav-links li a {
             color: #eeeeee;
             text-decoration: none;
-            font-size: 1em;
+            font-size: 1.05em;
             font-weight: 700;
-            padding: 8px 18px; /* تحويلها لشكل زر */
-            border-radius: 30px; /* حواف دائرية */
-            background-color: transparent;
+            padding: 8px 22px; 
+            border-radius: 50px; 
+            background-color: rgba(255, 255, 255, 0.05); /* خلفية خفيفة لتظهر كزر دائماً */
+            border: 1px solid rgba(255, 255, 255, 0.05); /* إطار خفيف جداً */
             transition: all 0.3s ease-in-out;
-            white-space: nowrap; /* منع نزول النص لسطر جديد */
+            white-space: nowrap; 
             display: inline-block;
         }
+        
+        /* تأثير التمرير (Hover) */
         .nav-links li a:hover {
-            background-color: rgba(46, 204, 113, 0.15); /* لون خلفية خفيف عند التمرير */
+            background-color: rgba(46, 204, 113, 0.15); 
             color: #2ecc71;
+            border-color: rgba(46, 204, 113, 0.3);
         }
-        /* كلاس القسم النشط (Highlight) */
+        
+        /* الزر النشط (Highlight) */
         .nav-links li a.active {
             background-color: #2ecc71;
             color: #000;
+            border-color: #2ecc71;
             box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
         }
 
-        /* 🌟 تعديلات شاشات الجوال (السحب الأفقي) 🌟 */
+        /* 🌟 تعديلات شاشات الجوال 🌟 */
         @media (max-width: 768px) {
             .nav-container {
                 padding: 10px 5px;
             }
             .nav-links {
-                justify-content: flex-start; /* لتبدأ من اليمين في الجوال */
-                overflow-x: auto; /* تفعيل السحب الأفقي */
-                flex-wrap: nowrap; /* منع تعدد الأسطر */
+                justify-content: flex-start; 
+                overflow-x: auto; 
+                flex-wrap: nowrap; 
                 padding-bottom: 5px; 
-                -webkit-overflow-scrolling: touch; /* سحب ناعم في الآيفون */
-                scrollbar-width: none; /* إخفاء شريط التمرير في فايرفوكس */
+                -webkit-overflow-scrolling: touch; 
+                scrollbar-width: none; 
             }
             .nav-links::-webkit-scrollbar {
-                display: none; /* إخفاء شريط التمرير في سفاري وكروم */
+                display: none; 
             }
             .nav-links li a {
                 font-size: 0.9em;
-                padding: 6px 14px;
+                padding: 6px 16px;
             }
         }
 
         /* -------------------------------------- */
-        /* باقي التنسيقات (لم تتغير) */
+        /* باقي التنسيقات */
         /* -------------------------------------- */
         section {
             padding: 100px 20px 60px;
@@ -342,7 +351,6 @@
 
                 sections.forEach((section) => {
                     const sectionTop = section.offsetTop;
-                    // تفعيل الزر عندما يصل القسم للجزء العلوي من الشاشة
                     if (pageYOffset >= sectionTop - 120) {
                         current = section.getAttribute("id");
                     }
