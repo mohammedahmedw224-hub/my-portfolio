@@ -24,7 +24,7 @@
             line-height: 1.6;
         }
 
-        /* 🌟 كلاسات الحركة (Animation) 🌟 */
+        /* كلاسات الحركة */
         .fade-in {
             opacity: 0;
             transform: translateY(40px);
@@ -36,7 +36,7 @@
             transform: translateY(0);
         }
 
-        /* 🌟 شريط التنقل العلوي 🌟 */
+        /* شريط التنقل العلوي */
         .navbar {
             position: fixed;
             top: 0;
@@ -101,9 +101,6 @@
             .nav-links li a { font-size: 0.9em; padding: 6px 16px; }
         }
 
-        /* -------------------------------------- */
-        /* التنسيقات العامة */
-        /* -------------------------------------- */
         section {
             padding: 100px 20px 60px;
             max-width: 1200px;
@@ -128,7 +125,7 @@
             transform: translateX(-50%);
         }
 
-        /* 🌟 التحديث الجديد: واجهة الفيديوهات (الغطاء الذكي) 🌟 */
+        /* واجهة الفيديوهات (الغطاء الذكي) */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -170,20 +167,17 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(0px); /* يبدأ بدون ضبابية */
+            backdrop-filter: blur(0px);
             transition: all 0.5s ease;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
-        /* تأثيرات الهوفر للفيديو */
-        .video-wrapper:hover .custom-poster {
-            transform: scale(1.05); /* تقريب الصورة */
-        }
+        .video-wrapper:hover .custom-poster { transform: scale(1.05); }
         .video-wrapper:hover .blur-overlay {
             background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(6px); /* ضبابية احترافية */
+            backdrop-filter: blur(6px);
         }
 
         /* زر التشغيل النابض */
@@ -200,7 +194,7 @@
             padding-right: -2px;
             opacity: 0.9;
             transition: all 0.3s ease;
-            animation: pulse-play 2s infinite; /* الأنيميشن */
+            animation: pulse-play 2s infinite;
         }
         .video-wrapper:hover .play-btn {
             opacity: 1;
@@ -253,7 +247,7 @@
             background-color: rgba(46, 204, 113, 0.05);
         }
 
-        /* 🌟 التواصل وعبارة التوفر 🌟 */
+        /* التواصل */
         .contact-box {
             text-align: center;
             background: #1a1a1a;
@@ -301,11 +295,11 @@
             50% { transform: translateY(-5px); }
         }
 
-        /* 🌟 زر الواتساب العائم 🌟 */
+        /* زر الواتساب العائم */
         .floating-wa {
             position: fixed;
             bottom: 25px;
-            left: 25px; /* تم وضعه باليسار لكي لا يغطي على شريط التمرير */
+            left: 25px;
             width: 60px;
             height: 60px;
             background-color: #25D366;
@@ -320,11 +314,7 @@
             transition: all 0.3s ease;
             animation: pulse-wa 2s infinite;
         }
-        .floating-wa svg {
-            width: 35px;
-            height: 35px;
-            fill: #fff;
-        }
+        .floating-wa svg { width: 35px; height: 35px; fill: #fff; }
         .floating-wa:hover {
             transform: scale(1.15) rotate(-10deg);
             background-color: #20b858;
@@ -450,7 +440,7 @@
             <p>أنا جاهز لتحويل فكرتك القادمة إلى واقع بصري ملموس.</p>
             <a href="https://wa.me/967773934035" class="whatsapp-btn" id="waBtn" target="_blank">تواصل معي عبر واتساب</a>
             <br>
-            <div class="availability-text">متوفر حالياً لاستقبال المشاريع</div>
+            <div class="availability-text">✨ متوفر حالياً لاستقبال المشاريع</div>
         </div>
     </section>
 
@@ -461,68 +451,24 @@
     </a>
 
     <script>
-        // 1. وظيفة تشغيل الفيديو مع أنيميشن ناعم
+        // 1. الدالة المحدثة لتشغيل الفيديو (بدون كود Autoplay المرفوض أمنياً)
         function loadIframe(element, fileId) {
-            // إضافة أنيميشن التلاشي للغلاف
+            // لمنع تكرار الضغط وتخريب الكود
+            if(element.classList.contains('is-loaded')) return;
+            element.classList.add('is-loaded');
+
+            // إخفاء الغلاف الضبابي والزر بسلاسة
             element.querySelector('.blur-overlay').style.opacity = '0';
-            element.querySelector('.custom-poster').style.transform = 'scale(1.1)';
             element.querySelector('.custom-poster').style.opacity = '0';
+            element.querySelector('.custom-poster').style.transform = 'scale(1.1)';
             
-            // استبدال الغلاف بالفيديو بعد التلاشي
+            // إضافة مشغل جوجل درايف بعد التلاشي
             setTimeout(() => {
-                element.innerHTML = `<iframe src="https://drive.google.com/file/d/${fileId}/preview?autoplay=1" allow="autoplay" allowfullscreen style="width:100%; height:100%; position:absolute; top:0; left:0; border:none; border-radius:10px;"></iframe>`;
+                element.innerHTML = `<iframe src="https://drive.google.com/file/d/${fileId}/preview" width="100%" height="100%" frameborder="0" allowfullscreen style="position:absolute; top:0; left:0; border-radius:10px;"></iframe>`;
             }, 400);
         }
 
         document.addEventListener("DOMContentLoaded", function() {
             
-            // 2. تفعيل تأثير الحركة عند النزول (Fade-in)
             const faders = document.querySelectorAll('.fade-in');
-            const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
-
-            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add('appear');
-                    observer.unobserve(entry.target); 
-                });
-            }, appearOptions);
-
-            faders.forEach(fader => appearOnScroll.observe(fader));
-
-            // 3. تفعيل الهايلايت للأقسام (ScrollSpy)
-            const sections = document.querySelectorAll("section");
-            const navLinks = document.querySelectorAll(".nav-links li a");
-
-            window.addEventListener("scroll", () => {
-                let current = "";
-                sections.forEach((section) => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 120) {
-                        current = section.getAttribute("id");
-                    }
-                });
-
-                navLinks.forEach((link) => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href").includes(current)) {
-                        link.classList.add("active");
-                        if (window.innerWidth <= 768) {
-                            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                        }
-                    }
-                });
-            });
-
-            // 4. تأثير زر الواتساب عند الضغط
-            const waButton = document.getElementById('waBtn');
-            waButton.addEventListener('click', function() {
-                this.classList.add('btn-clicked');
-                setTimeout(() => this.classList.remove('btn-clicked'), 200);
-            });
-            
-        });
-    </script>
-
-</body>
-</html>
+            const appearOptions = { threshold: 0.1
